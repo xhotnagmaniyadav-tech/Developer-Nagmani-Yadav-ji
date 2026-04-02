@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,22 +30,7 @@ body {
     background: black;
     border: 1px solid cyan;
     cursor: pointer;
-    animation: glowColor 4s infinite;
     color: cyan;
-}
-
-/* Glow */
-@keyframes glowColor {
-    0% {color: cyan;}
-    25% {color: yellow;}
-    50% {color: pink;}
-    75% {color: lime;}
-    100% {color: cyan;}
-}
-
-.glow {
-    animation: glowColor 4s infinite;
-    text-shadow: 0 0 10px currentColor;
 }
 
 /* Main */
@@ -65,8 +51,7 @@ body {
     background: rgba(0,0,0,0.7);
     border-radius: 20px;
     padding: 20px;
-    box-shadow: 0 0 60px cyan;
-    scroll-behavior: smooth;
+    box-shadow: 0 0 40px cyan;
 }
 
 /* Profile */
@@ -74,6 +59,7 @@ body {
     position: relative;
     width: 150px;
     margin: auto;
+    text-align: center;
 }
 
 .profile img {
@@ -82,7 +68,7 @@ body {
     border: 3px solid cyan;
 }
 
-/* 🔥 NEW ORBIT SYSTEM (TRAIN TRACK STYLE) */
+/* 🔥 PERFECT ORBIT */
 .orbit {
     position: absolute;
     top: 50%;
@@ -90,39 +76,55 @@ body {
     width: 220px;
     height: 220px;
     transform: translate(-50%, -50%);
+    animation: spin 8s linear infinite;
 }
 
+/* 4 fixed positions (circle) */
 .orbit img {
     position: absolute;
-    top: 50%;
-    left: 50%;
     width: 40px;
-    transform-origin: -90px center;
-    animation: orbitMove 6s linear infinite;
 }
 
-/* Equal spacing like train bogies */
-.orbit img:nth-child(1) { animation-delay: 0s; }
-.orbit img:nth-child(2) { animation-delay: -1.5s; }
-.orbit img:nth-child(3) { animation-delay: -3s; }
-.orbit img:nth-child(4) { animation-delay: -4.5s; }
+/* Top */
+.orbit img:nth-child(1) {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
 
-/* Circular motion */
-@keyframes orbitMove {
-    from {
-        transform: rotate(0deg) translateX(90px) rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg) translateX(90px) rotate(-360deg);
+/* Right */
+.orbit img:nth-child(2) {
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+}
+
+/* Bottom */
+.orbit img:nth-child(3) {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Left */
+.orbit img:nth-child(4) {
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+
+/* Rotate whole circle */
+@keyframes spin {
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
     }
 }
 
-/* Typing */
+/* Text */
 #typing {
     margin-top: 20px;
-    min-height: 150px;
-    text-align: left;
     color: white;
+    text-align: left;
 }
 
 /* Buttons */
@@ -134,11 +136,7 @@ body {
     background: black;
     border: 1px solid cyan;
     text-decoration: none;
-    animation: glowColor 4s infinite;
-}
-.btn:hover {
-    background: cyan;
-    color: black;
+    color: cyan;
 }
 </style>
 
@@ -155,9 +153,9 @@ body {
 
 <div class="overlay">
 <div class="laptop">
-<div class="screen">
 
 <div class="profile">
+
     <img src="nagmani.jpg" alt="Nagmani">
 
     <div class="orbit">
@@ -167,60 +165,40 @@ body {
         <img src="https://cdn-icons-png.flaticon.com/512/732/732190.png">
     </div>
 
-    <h1 class="glow">Developer Nagmani-Yadav</h1>
-</div>
-
-<div id="typing" class="glow"></div>
+    <h2 style="color:cyan;">Developer Nagmani-Yadav</h2>
 
 </div>
+
+<div id="typing"></div>
+
 </div>
 </div>
 
 <script>
-
-function typeText(text) {
-    let i = 0;
-    let box = document.getElementById("typing");
-    box.innerHTML = "";
-
-    function typing() {
-        if (i < text.length) {
-            if(text.charAt(i) === "\n"){
-                box.innerHTML += "<br>";
-            } else {
-                box.innerHTML += text.charAt(i);
-            }
-            i++;
-            setTimeout(typing, 10);
-        }
-    }
-    typing();
-}
-
 function showPage(page) {
 
     if(page=="about"){
-        typeText("Hi, I’m Nagmani Yadav 👋\nA passionate and professional Web Developer.\nI specialize in creating modern, responsive, and user-friendly websites.\nAlong with web development, I also have a strong interest in graphic designing and creative digital work.\nI am based in Bakhtiyarpur (803212) and have completed my graduation in Computer Science.");
+        document.getElementById("typing").innerHTML =
+        "Hi, I’m Nagmani Yadav 👋<br>A passionate Web Developer.";
     }
 
     if(page=="skills"){
-        typeText("Skills:\nJavaScript, Python, HTML, CSS\nMS Office, Tally\nCorelDRAW, Illustrator\nPremiere Pro, Photoshop");
+        document.getElementById("typing").innerHTML =
+        "HTML, CSS, JavaScript, Python";
     }
 
     if(page=="contact"){
         document.getElementById("typing").innerHTML = `
-        <br>
-        <a class="btn" href="tel:9204909834">📞 Call</a>
-        <a class="btn" href="https://wa.me/919204909834">💬 WhatsApp</a>
-        <a class="btn" href="mailto:xhotnagmaniyadav@gmail.com">📧 Gmail</a>
+        <a class="btn" href="tel:9204909834">Call</a>
+        <a class="btn" href="https://wa.me/919204909834">WhatsApp</a>
         `;
     }
 
     if(page=="description"){
-        typeText("The Job Overview\nWe are seeking a front-end web developer to build new web pages.\n\nResponsibilities:\nWrite efficient code\nCreate layouts\nMaintain website\n\nTechnologies:\nReact Angular Vue WordPress");
+        document.getElementById("typing").innerHTML =
+        "Front-end Developer Project Work";
     }
 }
-
 </script>
 
 </body>
