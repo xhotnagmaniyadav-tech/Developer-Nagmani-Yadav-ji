@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Developer Nagmani-Yadav | Portfolio</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: url('https://images.unsplash.com/photo-1518770660439-4636190af475') no-repeat center/cover;
+    display: flex;
+    overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 200px;
+    background: rgba(0,0,0,0.8);
+    padding: 20px;
+}
+
+.sidebar button {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    background: black;
+    border: 1px solid cyan;
+    cursor: pointer;
+    animation: glowColor 4s infinite;
+    color: cyan;
+}
+
+/* Glow */
+@keyframes glowColor {
+    0% {color: cyan;}
+    25% {color: yellow;}
+    50% {color: pink;}
+    75% {color: lime;}
+    100% {color: cyan;}
+}
+
+.glow {
+    animation: glowColor 4s infinite;
+    text-shadow: 0 0 10px currentColor;
+}
+
+/* Main */
+.overlay {
+    flex: 1;
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Card */
+.laptop {
+    width: 95%;
+    max-width: 900px;
+    height: 90vh;
+    overflow-y: auto;
+    background: rgba(0,0,0,0.7);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 0 60px cyan;
+    scroll-behavior: smooth;
+}
+
+/* Profile */
+.profile {
+    position: relative;
+    width: 150px;
+    margin: auto;
+}
+
+.profile img {
+    width: 130px;
+    border-radius: 50%;
+    border: 3px solid cyan;
+}
+
+/* 🔥 NEW ORBIT SYSTEM (TRAIN TRACK STYLE) */
+.orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 220px;
+    height: 220px;
+    transform: translate(-50%, -50%);
+}
+
+.orbit img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    transform-origin: -90px center;
+    animation: orbitMove 6s linear infinite;
+}
+
+/* Equal spacing like train bogies */
+.orbit img:nth-child(1) { animation-delay: 0s; }
+.orbit img:nth-child(2) { animation-delay: -1.5s; }
+.orbit img:nth-child(3) { animation-delay: -3s; }
+.orbit img:nth-child(4) { animation-delay: -4.5s; }
+
+/* Circular motion */
+@keyframes orbitMove {
+    from {
+        transform: rotate(0deg) translateX(90px) rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg) translateX(90px) rotate(-360deg);
+    }
+}
+
+/* Typing */
+#typing {
+    margin-top: 20px;
+    min-height: 150px;
+    text-align: left;
+    color: white;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    background: black;
+    border: 1px solid cyan;
+    text-decoration: none;
+    animation: glowColor 4s infinite;
+}
+.btn:hover {
+    background: cyan;
+    color: black;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+    <button onclick="showPage('about')">About</button>
+    <button onclick="showPage('skills')">Skills</button>
+    <button onclick="showPage('contact')">Contact</button>
+    <button onclick="showPage('description')">Description</button>
+</div>
+
+<div class="overlay">
+<div class="laptop">
+<div class="screen">
+
+<div class="profile">
+    <img src="nagmani.jpg" alt="Nagmani">
+
+    <div class="orbit">
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968267.png">
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968292.png">
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png">
+        <img src="https://cdn-icons-png.flaticon.com/512/732/732190.png">
+    </div>
+
+    <h1 class="glow">Developer Nagmani-Yadav</h1>
+</div>
+
+<div id="typing" class="glow"></div>
+
+</div>
+</div>
+</div>
+
+<script>
+
+function typeText(text) {
+    let i = 0;
+    let box = document.getElementById("typing");
+    box.innerHTML = "";
+
+    function typing() {
+        if (i < text.length) {
+            if(text.charAt(i) === "\n"){
+                box.innerHTML += "<br>";
+            } else {
+                box.innerHTML += text.charAt(i);
+            }
+            i++;
+            setTimeout(typing, 10);
+        }
+    }
+    typing();
+}
+
+function showPage(page) {
+
+    if(page=="about"){
+        typeText("Hi, I’m Nagmani Yadav 👋\nA passionate and professional Web Developer.\nI specialize in creating modern, responsive, and user-friendly websites.\nAlong with web development, I also have a strong interest in graphic designing and creative digital work.\nI am based in Bakhtiyarpur (803212) and have completed my graduation in Computer Science.");
+    }
+
+    if(page=="skills"){
+        typeText("Skills:\nJavaScript, Python, HTML, CSS\nMS Office, Tally\nCorelDRAW, Illustrator\nPremiere Pro, Photoshop");
+    }
+
+    if(page=="contact"){
+        document.getElementById("typing").innerHTML = `
+        <br>
+        <a class="btn" href="tel:9204909834">📞 Call</a>
+        <a class="btn" href="https://wa.me/919204909834">💬 WhatsApp</a>
+        <a class="btn" href="mailto:xhotnagmaniyadav@gmail.com">📧 Gmail</a>
+        `;
+    }
+
+    if(page=="description"){
+        typeText("The Job Overview\nWe are seeking a front-end web developer to build new web pages.\n\nResponsibilities:\nWrite efficient code\nCreate layouts\nMaintain website\n\nTechnologies:\nReact Angular Vue WordPress");
+    }
+}
+
+</script>
+
+</body>
+</html>
